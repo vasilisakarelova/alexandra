@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'Minion Pro Regular';
+    src: url('../fonts/MinionPro-Regular.woff') format('woff'),
+        url('../fonts/MinionPro-Regular.woff2') format('woff2'),
+        url('../fonts/MinionPro-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Glossy Display Regular';
+    src: url('../fonts/GlossyDisplay-Regular.woff') format('woff'),
+        url('../fonts/GlossyDisplay-Regular.woff2') format('woff2'),
+        url('../fonts/GlossyDisplay-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Glossy Display Light Italic';
+    src: url('../fonts/GlossyDisplay-LightItalic.woff') format('woff'),
+        url('../fonts/GlossyDisplay-LightItalic.woff2') format('woff2'),
+        url('../fonts/GlossyDisplay-LightItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Glossy Display Regular Italic';
+    src: url('../fonts/GlossyDisplay-RegularItalic.woff') format('woff'),
+        url('../fonts/GlossyDisplay-RegularItalic.woff2') format('woff2'),
+        url('../fonts/GlossyDisplay-RegularItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Glossy Display Light Extended';
+    src: url('../fonts/GlossyDisplay-LightExtended.woff') format('woff'),
+        url('../fonts/GlossyDisplay-LightExtended.woff2') format('woff2'),
+        url('../fonts/GlossyDisplay-LightExtended.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

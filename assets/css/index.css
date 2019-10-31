@@ -1,7 +1,3 @@
-:root {
-  --content-width: 65rem;
-}
-
 *,
 *:after,
 *:before{
@@ -11,7 +7,7 @@
 }
 
 html {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";;
+  font-family: 'Minion Pro Regular';
 }
 
 li {
@@ -31,146 +27,99 @@ img {
   width: 100%;
 }
 
-.page {
-  padding: 5vh 5vw 10vh;
-}
-.page > * {
-  max-width: var(--content-width);
-  margin: 0 auto;
-}
-
 .header {
-  margin-bottom: 1.5rem;
-}
-
-.header a {
   position: relative;
-  text-transform: uppercase;
-  font-size: .875rem;
-  letter-spacing: .05em;
-  padding: .5rem 0;
-  font-weight: 700;
-}
-
-.header .logo {
-  display: block;
-  margin-bottom: 1.5rem;
-  padding: .5rem 0;
-}
-
-.header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.menu a {
-  margin: 0 .75rem;
-}
-
-.menu a[aria-current] {
-  border-bottom: 2px solid #000;
-}
-
-@media screen and (min-width: 40rem) {
-  .header .logo {
-    margin-bottom: 0;
-  }
-  .header {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .menu {
-    margin-right: -.75rem;
-  }
-}
-
-
-main {
-  min-height: calc(100vh - 10rem);
-}
-
-.intro {
-  padding: 10vh 0;
-  text-align: center;
-}
-
-.intro h1 {
-  position: relative;
-  margin-bottom: 1rem;
-  font-weight: 900;
-  font-size: calc(1vw + 2rem);
-  z-index: 1;
-}
-
-.tags {
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.075em;
-  font-size: .75rem;
-  font-weight: 600;
-}
-
-.text {
-  line-height: 1.5em;
-}
-.text p,
-.text figure,
-.text ul,
-.text ol {
-  margin-bottom: 1.5em;
-}
-.text h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-top: 3rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-.text > *:first-child {
-  margin-top: 0;
-}
-.text a {
-  position: relative;
-  white-space: nowrap;
-  font-weight: 500;
-  z-index: 1;
-  display: inline-block;
-  border-bottom: 2px solid #000;
-}
-.text figure {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-.text img {
+  top: 0;
+  left: 0;
   width: 100%;
+  z-index: 99;
+  padding-top: 20px;
 }
 
-.footer {
-  padding: 1.5rem 5vw 10vh;
-  text-align: center;
-  max-width: var(--content-width);
-  margin: 0 auto;
-  line-height: 1.5em;
+.page {
+  padding: 0 15px;
 }
-.footer a {
+
+.page-container {
+  position: relative;
+}
+
+.grid {
+  position: relative;
+  display: block;
+}
+
+.header-row {
+  position: relative;
+  display: flex;
+}
+
+.header-row--item {
+  position: relative;
+  display: block;
+  padding-right: 10px;
+}
+
+.header-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  padding-top: 20px;
+  padding-left: 33px;
+  background: linear-gradient(-180deg, #FFFFFF 0%, rgba(255,255,255,0.00) 100%);
+  transition: opacity .4s linear;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.header-menu.is-open {
+  opacity: 1;
+}
+
+.is-link {
+  cursor: pointer;
+}
+
+.header-menu--desc {
+  position: relative;
   display: inline-block;
-  font-size: .875rem;
-}
-.footer > a {
-  margin-bottom: 1.5rem;
-  border-top: 2px solid #000;
-  width: 16.5rem;
-  padding-top: .5rem;
+  vertical-align: top;
+  width: 40%;
+  max-width: 450px;
 }
 
-.social a {
-  margin: 0 .75rem;
-  padding: .5rem 1rem;
-  border: 2px solid #000;
-  width: 7.5rem;
+.header-menu--clients {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  vertical-align: top;
+  width: 40%;
+  max-width: 450px;
+  padding-left: 40px;
 }
-.social a:hover {
-  background: #000;
-  color: #fff;
+
+.header-menu--clients span {
+  position: relative;
+  display: block;
+  width: 50%;
+}
+
+@media screen and (min-width: 984px) {
+  .header {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+
+  .page {
+    padding: 0 33px;
+  }
+
+  .grid {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+  }
 }

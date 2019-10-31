@@ -1,42 +1,53 @@
-<?php
-/**
- * Snippets are a great way to store code snippets for reuse or to keep your templates clean.
- * This header snippet is reused in all templates. 
- * It fetches information from the `site.txt` content file and contains the site navigation.
- * More about snippets: https://getkirby.com/docs/guide/templates/snippets
- */
-?>
-
 <!doctype html>
 <html lang="en">
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
-  <!-- The title tag we show the title of our site and the title of the current page -->
+  <?php if($text = $page->shareTitle()): ?>
+    <meta property="og:title" content="<?php echo $text; ?>" />
+  <?php else: ?>
+    <meta property="og:title" content="<?php echo $page->title() ?> | <?php echo $site->title() ?>"/>
+  <?php endif ?>
+
+  <?php if($image = $page->sharePic()->toFile()): ?>
+    <meta property="og:image" content="<?php echo $image->url(); ?>" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+  <?php endif ?>
+
   <title><?= $site->title() ?> | <?= $page->title() ?></title>
 
-  <!-- Stylesheets can be included using the `css()` helper. Kirby also provides the `js()` helper to include script file. 
-        More Kirby helpers: https://getkirby.com/docs/reference/templates/helpers -->
-  <?= css(['assets/css/index.css', '@auto']) ?>
+  <?= css(['assets/css/typography.css', 'assets/css/index.css', '@auto']) ?>
 
+  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
 </head>
 <body>
 
   <div class="page">
     <header class="header">
-      <!-- In this link we call `$site->url()` to create a link back to the homepage -->
-      <a class="logo" href="<?= $site->url() ?>"><?= $site->title() ?></a>
+      <div class="header-row">
+        <div class="header-row--item is-link" data-menu-open>Alexandra Cepeda</div>
+        <div class="header-row--item">Photographer & Art Director</div>
+        <div class="header-row--item"><?= $site->find('about')->phone() ?></div>
+        <div class="header-row--item"><a href="mailto:<?= $site->find('about')->email() ?>"><?= $site->find('about')->email() ?></a></div>
+      </div>
 
-      <nav id="menu" class="menu">
-        <?php 
-        // In the menu, we only fetch listed pages, i.e. the pages that have a prepended number in their foldername
-        // We do not want to display links to unlisted `error`, `home`, or `sandbox` pages
-        // More about page status: https://getkirby.com/docs/reference/panel/blueprints/page#statuses
-        foreach ($site->children()->listed() as $item): ?>
-        <?= $item->title()->link() ?>
-        <?php endforeach ?>
-      </nav>
+      <div class="header-row">
+        <a class="header-row--item" href="<?= $site->url() ?>">Selected Project</a>
+        <div class="header-row--item" data-project-title><?= $site->find('photography')->children()->listed()->nth(0)->headline() ?></div>
+        <a class="header-row--item" href="<?= $site->url() ?>">Index</a>
+      </div>
+
+      <div class="header-menu" data-menu>
+        <div class="header-menu--inner header-menu--desc"><?= $site->find('about')->text() ?></div>
+        <div class="header-menu--inner header-menu--clients">
+          <div class="header-menu--clients-header">Selected Clients</div>
+          <?php foreach ($site->find('about')->clients()->split($separator = ',') as $tag): ?>
+            <span><?= $tag ?></span>
+          <?php endforeach ?>
+        </div>
+      </div>
     </header>
-

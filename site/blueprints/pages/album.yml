@@ -37,9 +37,9 @@ columns:
     fields:
       cover:
         type: files
+        template: image
         multiple: false
       headline:
         type: text
       description:
         type: textarea
-      tags: true
