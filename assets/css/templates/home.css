@@ -1,27 +1,64 @@
-html {
-  overflow: hidden;
-}
-
-.case-gallery {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 100%;
-}
-
 .case-wrapper {
   position: relative;
   display: block;
   overflow: hidden;
+  width: calc(100% + 30px);
+  left: -15px;
+  margin-bottom: 10px;
+}
+
+.case-gallery-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: scroll;
+  padding: 0 15px;
+  margin-bottom: -40px;
+}
+
+.case-gallery {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 40px;
 }
 
 .case-gallery img {
   position: relative;
-  height: 100%;
+  height: 100vw;
   width: auto;
 }
 
+.case-wrapper-name {
+  position: relative;
+  display: block;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 983px) {
+  .case-wrapper {
+    overflow: hidden !important;
+  }
+
+  .case-wrapper-img {
+    display: none;
+  }
+
+  .case-gallery img {
+    opacity: 1 !important;
+    margin-right: 15px;
+  }
+}
+
 @media screen and (min-width: 984px) {
+  .case-wrapper-name {
+    display: none;
+  }
+
+  html {
+    overflow: hidden;
+  }
+
   .grid {
     position: fixed;
     top: 0;
@@ -35,27 +72,30 @@ html {
     height: 100%;
     width: auto;
     flex: 1;
+    left: 0;
+    margin-bottom: 0px;
+    border: 1px solid lightblue;
   }
 
-  /* .case-wrapper:nth-of-type(1) {
-    background: lightgreen;
+  .case-wrapper:nth-of-type(1) {
+    border: 1px solid lightblue;
   }
 
-  .case-wrapper:nth-of-type(2) {
-    background: lightcoral;
+  .case-wrapper:nth-of-type(3) {
+    border: 1px solid lightcoral;
   }
 
-  .case-wrapper:nth-of-type(3) {
-    background: lightyellow;
+  .case-wrapper:nth-of-type(5) {
+    border: 1px solid lightgoldenrodyellow;
   }
 
-  .case-wrapper:nth-of-type(4) {
-    background: lightskyblue;
+  .case-wrapper:nth-of-type(7) {
+    border: 1px solid lightgreen;
   }
 
-  .case-wrapper:nth-of-type(5) {
-    background: lightpink;
-  } */
+  .case-wrapper:nth-of-type(9) {
+    border: 1px solid lightblue;
+  }
 
   .case-wrapper:first-of-type {
     overflow: visible;
@@ -66,18 +106,36 @@ html {
   }
 
   .case-wrapper-img {
-    position: absolute;
+    position: fixed;
     opacity: 0;
     height: 100%;
     width: auto;
-    left: 0;
     z-index: -1;
   }
 
-  .case-gallery img {
+  .case-gallery-wrap {
     position: absolute;
     top: 0;
-    left: 0;
+    height: 100%;
+    padding: 0;
+    margin-bottom: 0;
+    overflow: visible;
+  }
+
+  .case-gallery {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 0;
+  }
+
+  .case-gallery img {
+    position: fixed;
+    top: 0;
     opacity: 0;
+    height: 100%;
+    width: auto;
+    z-index: -1;
   }
 }

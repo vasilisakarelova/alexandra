@@ -24,7 +24,7 @@ columns:
   - width: 1/2
     fields:
       text:
-        label: About
+        label: About (text after "Alexandra Cepeda")
         type: textarea
         size: medium
       clients:

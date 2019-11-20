@@ -1,4 +1,13 @@
 @font-face {
+    font-family: 'Kokoro';
+    src: url('../fonts/KokoroMinchoutai.woff') format('woff'),
+        url('../fonts/KokoroMinchoutai.woff2') format('woff2'),
+        url('../fonts/KokoroMinchoutai.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'Minion Pro Regular';
     src: url('../fonts/MinionPro-Regular.woff') format('woff'),
         url('../fonts/MinionPro-Regular.woff2') format('woff2'),

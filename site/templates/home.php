@@ -7,18 +7,21 @@
         <?php if($image = $album->cover()): ?>
           <img class="lazy case-wrapper-img is-<?= $image->orientation() ?>"
             src="<?php echo $image->thumb('small')->url() ?>"
-            <?php if ($image->isPortrait()): ?>data-src="<?php echo $image->thumb('mediumheight')->url() ?>"<?php endif ?>
-            <?php if ($image->isLandscape()): ?>data-src="<?php echo $image->thumb('mediumwidth')->url() ?>"<?php endif ?> />
+            <?php if ($image->isPortrait()): ?>data-src="<?php echo $image->thumb('defaultheight')->url() ?>"<?php endif ?>
+            <?php if ($image->isLandscape()): ?>data-src="<?php echo $image->thumb('defaultwidth')->url() ?>"<?php endif ?> />
         <?php endif ?>
-        <div class="case-gallery">
-          <?php foreach ($album->images() as $image): ?>
-            <img class="lazy is-<?= $image->orientation() ?>"
-              src="<?php echo $image->thumb('small')->url() ?>"
-              <?php if ($image->isPortrait()): ?>data-src="<?php echo $image->thumb('mediumheight')->url() ?>"<?php endif ?>
-              <?php if ($image->isLandscape()): ?>data-src="<?php echo $image->thumb('mediumwidth')->url() ?>"<?php endif ?> />
-          <?php endforeach ?>
+        <div class="case-gallery-wrap">
+          <div class="case-gallery">
+            <?php foreach ($album->images() as $image): ?>
+              <img class="lazy is-<?= $image->orientation() ?>"
+                src="<?php echo $image->thumb('small')->url() ?>"
+                <?php if ($image->isPortrait()): ?>data-src="<?php echo $image->thumb('defaultheight')->url() ?>"<?php endif ?>
+                <?php if ($image->isLandscape()): ?>data-src="<?php echo $image->thumb('defaultwidth')->url() ?>"<?php endif ?> />
+            <?php endforeach ?>
+          </div>
         </div>
       </div>
+      <div class="case-wrapper-name"><?= $album->headline() ?></div>
     <?php endforeach ?>
   </div>
 
