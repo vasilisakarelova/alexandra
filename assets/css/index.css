@@ -208,6 +208,10 @@ img {
     padding-left: 33px;
   }
 
+  .header-row {
+    flex-wrap: nowrap;
+  }
+
   .header-row--item {
     width: auto;
   }
