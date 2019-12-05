@@ -7,7 +7,9 @@
         $last = $album->images()->last();
         foreach ($album->images() as $image): ?>
           <img class="photography-case-img lazy is-<?= $image->orientation() ?><?php if($image == $last) echo ' photography-case-img_last' ?>"
+            data-action="zoom"
             data-gallery-group="<?= $album->indexOf($image) ?>"
+            data-gallery-title="<?= $album->title() ?>"
             src="<?php echo $image->thumb('small')->url() ?>"
             <?php if ($image->isPortrait()): ?>data-src="<?php echo $image->thumb('mediumheight')->url() ?>"<?php endif ?>
             <?php if ($image->isLandscape()): ?>data-src="<?php echo $image->thumb('mediumwidth')->url() ?>"<?php endif ?>

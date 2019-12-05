@@ -11,7 +11,7 @@ html {
   display: block;
   height: 100%;
   width: 100%;
-  font-family: 'Kokoro';
+  font-family: 'Sim Sun';
 }
 
 body {
@@ -65,14 +65,19 @@ img {
   overflow: hidden;
   max-height: 100%;
   transition: opacity 1s linear;
-}
 
-.page.is-loaded {
   opacity: 1;
   overflow: auto;
   max-height: none;
   height: 100%;
 }
+
+/* .page.is-loaded {
+  opacity: 1;
+  overflow: auto;
+  max-height: none;
+  height: 100%;
+} */
 
 .page-preloader {
   position: absolute;

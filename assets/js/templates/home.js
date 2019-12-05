@@ -5,6 +5,14 @@
   var projectTitle = document.querySelector('[data-project-title]')
   var prevIdx
 
+  window.addEventListener('resize', function() {
+    var galleryWidth = (window.innerWidth - mainImgs[cases.length - 1].offsetWidth) / 7
+    var winwW = window.innerWidth
+    var maxW = winwW - mainImgs[cases.length - 1].offsetWidth + galleryWidth
+    cases[0].parentNode.style.width = maxW + 'px'
+    cases[0].parentNode.style.overflow = 'visible'
+  })
+
   cases.forEach(function(gallery, idx) {
     var mainImg = mainImgs[idx]
     var mainGallery = mainGalleries[idx]
@@ -12,22 +20,15 @@
     var currentGallery = mainGalleryImgs.concat(mainImg)
     var currentActive = currentGallery.length - 1
 
-    mainImg.addEventListener('load', function() {
-      if ((gallery.getBoundingClientRect().left + mainImg.getBoundingClientRect().width) >= window.innerWidth) {
-        var right = window.innerWidth - (gallery.getBoundingClientRect().left + gallery.getBoundingClientRect().width)
-        mainImg.style.right = right + 'px'
-
-        mainGalleryImgs.forEach(function(mainGalleryImg) {
-          mainGalleryImg.style.right = right + 'px'
-        })
-      } else {
-        mainImg.style.left = gallery.getBoundingClientRect().left + 'px'
-
-        mainGalleryImgs.forEach(function(mainGalleryImg) {
-          mainGalleryImg.style.left = gallery.getBoundingClientRect().left + 'px'
-        })
-      }
-    })
+    if (idx === (cases.length - 1)) {
+      mainImg.addEventListener('load', function() {
+        var galleryWidth = (window.innerWidth - mainImg.offsetWidth) / 7
+        var winwW = window.innerWidth
+        var maxW = winwW - mainImg.offsetWidth + galleryWidth
+        gallery.parentNode.style.width = maxW + 'px'
+        gallery.parentNode.style.overflow = 'visible'
+      })
+    }
 
     gallery.addEventListener('mouseenter', function(ev) {
       mainImg.style.opacity = 1

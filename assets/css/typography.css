@@ -8,6 +8,15 @@
 }
 
 @font-face {
+    font-family: 'Sim Sun';
+    src: url('../fonts/BousungEG-Light-GB.woff') format('woff'),
+        url('../fonts/BousungEG-Light-GB.woff2') format('woff2'),
+        url('../fonts/BousungEG-Light-GB.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'Minion Pro Regular';
     src: url('../fonts/MinionPro-Regular.woff') format('woff'),
         url('../fonts/MinionPro-Regular.woff2') format('woff2'),

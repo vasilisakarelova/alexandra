@@ -27,23 +27,23 @@
   var lazyLoadInstance = new LazyLoad({
     elements_selector: ".lazy",
     callback_loaded: function(el) {
-      if (el.classList.contains('page-preloader-img')) {
-        setTimeout(function() {
-          el.parentNode.style.opacity = 0
-          document.querySelector('.page').classList.add('is-loaded')
-
-          if (getCookie('preloaderShown') === '') {
-            var date = new Date();
-            date.setDate(date.getDate() + 1);
-            date = date.toUTCString();
-            setCookie('preloaderShown', 'true', {'expires': date})
-          }
-
-          setTimeout(function() {
-            el.parentNode.style.display = 'none'
-          }, 1000)
-        }, 2000)
-      }
+      // if (el.classList.contains('page-preloader-img')) {
+      //   setTimeout(function() {
+      //     el.parentNode.style.opacity = 0
+      //     document.querySelector('.page').classList.add('is-loaded')
+      //
+      //     if (getCookie('preloaderShown') === '') {
+      //       var date = new Date();
+      //       date.setDate(date.getDate() + 1);
+      //       date = date.toUTCString();
+      //       setCookie('preloaderShown', 'true', {'expires': date})
+      //     }
+      //
+      //     setTimeout(function() {
+      //       el.parentNode.style.display = 'none'
+      //     }, 1000)
+      //   }, 2000)
+      // }
 		}
   })
 

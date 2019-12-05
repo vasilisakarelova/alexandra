@@ -19,6 +19,6 @@
       </div>
     </div>
   <?php endif ?>
-  <?= js(['assets/js/index.js', '@auto']) ?>
+  <?= js(['assets/js/jquery-3.4.1.min.js', 'assets/js/zoom.js', 'assets/js/index.js', '@auto']) ?>
 </body>
 </html>

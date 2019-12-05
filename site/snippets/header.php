@@ -19,7 +19,7 @@
 
   <title><?= $site->title() ?> | <?= $page->title() ?></title>
 
-  <?= css(['assets/css/typography.css', 'assets/css/index.css', '@auto']) ?>
+  <?= css(['assets/css/typography.css', 'assets/css/zoom.css', 'assets/css/index.css', '@auto']) ?>
 
   <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
@@ -27,7 +27,7 @@
 <body>
 
   <?php if(!$_COOKIE["preloaderShown"]): ?>
-    <div class="page-preloader">
+    <div class="page-preloader" style="display: none;">
       <img class="lazy page-preloader-img"
         src="<?= image('/preloader.jpg')->thumb('small')->url() ?>"
         <?php if (image('/preloader.jpg')->isPortrait()): ?>data-src="<?php echo image('/preloader.jpg')->thumb('defaultheight')->url() ?>"<?php endif ?>
