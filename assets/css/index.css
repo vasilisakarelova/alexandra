@@ -11,7 +11,7 @@ html {
   display: block;
   height: 100%;
   width: 100%;
-  font-family: 'Sim Sun';
+  font-family: 'ss';
 }
 
 body {
@@ -97,11 +97,6 @@ img {
   object-fit: cover;
 }
 
-.page-container {
-  position: relative;
-  transition: filter 1s linear;
-}
-
 .grid {
   position: relative;
   display: block;
@@ -126,10 +121,8 @@ img {
   left: 0;
   height: 100vh;
   width: 100%;
-  padding-top: 20px;
-  padding-left: 15px;
+  padding: 20px 15px 0;
   background: linear-gradient(-180deg, #FFFFFF 0%, rgba(255,255,255,0.00) 100%);
-  transition: opacity .4s linear;
   visibility: hidden;
   opacity: 0;
 }
@@ -144,20 +137,20 @@ img {
 
 .header-menu--desc {
   position: relative;
-  display: inline-block;
+  display: block;
   vertical-align: top;
-  width: 40%;
+  width: 100%;
   max-width: 450px;
 }
 
 .header-menu--clients {
   position: relative;
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   vertical-align: top;
-  width: 40%;
+  width: 100%;
   max-width: 450px;
-  padding-left: 40px;
+  padding-top: 30px;
 }
 
 .header-menu--clients span {
@@ -209,8 +202,19 @@ img {
   }
 
   .header-menu {
-    padding-top: 20px;
-    padding-left: 33px;
+    padding: 20px 33px 0;
+  }
+
+  .header-menu--desc {
+    display: inline-block;
+    width: 40%;
+  }
+
+  .header-menu--clients {
+    display: inline-flex;
+    width: 40%;
+    padding-left: 10px;
+    padding-top: 0px;
   }
 
   .header-row {
@@ -218,7 +222,7 @@ img {
   }
 
   .header-row--item {
-    width: auto;
+    white-space: nowrap;
   }
 
   .page {

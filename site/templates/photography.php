@@ -11,8 +11,8 @@
             data-gallery-group="<?= $album->indexOf($image) ?>"
             data-gallery-title="<?= $album->title() ?>"
             src="<?php echo $image->thumb('small')->url() ?>"
-            <?php if ($image->isPortrait()): ?>data-src="<?php echo $image->thumb('mediumheight')->url() ?>"<?php endif ?>
-            <?php if ($image->isLandscape()): ?>data-src="<?php echo $image->thumb('mediumwidth')->url() ?>"<?php endif ?>
+            <?php if ($image->isPortrait()): ?>data-src="<?php echo $image->thumb('defaultheight')->url() ?>"<?php endif ?>
+            <?php if ($image->isLandscape()): ?>data-src="<?php echo $image->thumb('defaultwidth')->url() ?>"<?php endif ?>
           />
       <?php endforeach ?>
     <?php endforeach ?>

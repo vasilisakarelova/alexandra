@@ -23,7 +23,7 @@
   width: auto;
   margin-right: 4px;
   margin-bottom: 37px;
-  transition: all .4s linear;
+  transition: opacity .4s linear;
 }
 
 .photography-case-img.hovered {
@@ -39,5 +39,28 @@
 }
 
 .photography-case-img_last {
-  margin-right: 66px;
+  margin-right: 36px;
+}
+
+div.page-container {
+  position: relative;
+  display: block;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: filter 1s linear;
+}
+
+@media screen and (min-width: 984px) {
+  .photography-case-img_last {
+    margin-right: 66px;
+  }
+
+  div.page div.page-container {
+    position: relative;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transition: filter 1s linear;
+  }
 }

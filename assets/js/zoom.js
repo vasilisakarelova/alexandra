@@ -9,6 +9,8 @@
         this._handleClick = this._handleClick.bind(this)
         this._handleKeyDown = this._handleKeyDown.bind(this)
         this._handleScroll = this._handleScroll.bind(this)
+        this._allImages = []
+        this._header = null
     }
     ImageZoomService.prototype = {
         init: function() {
@@ -17,22 +19,22 @@
         _zoom: function() {
             this._target.zoomIn()
             this._document.addEventListener('keydown', this._handleKeyDown)
-            this._document.addEventListener('scroll', this._handleScroll)
+            // this._document.addEventListener('scroll', this._handleScroll)
         },
         _close: function() {
-            if (!this._target)
-                return
+            if (!this._target) return
+
             this._target.zoomOut()
             this._target = null
             this._document.removeEventListener('keydown', this._handleKeyDown)
-            this._document.removeEventListener('scroll', this._handleScroll)
+            // this._document.removeEventListener('scroll', this._handleScroll)
         },
         _handleClick: function(event) {
             var target = event.target
-            if (!target)
-                return
+            if (!target) return
+
             if (target.tagName === 'IMG' && target.hasAttribute('data-action')) {
-                switch (target.getAttribute('data-action')) {
+              switch (target.getAttribute('data-action')) {
                 case 'zoom':
                     this._target = new Zoomable(target)
                     this._zoom()
@@ -42,7 +44,7 @@
                     break
                 default:
                     break
-                }
+              }
             } else {
                 this._close()
             }
@@ -52,14 +54,16 @@
                 this._close()
         },
         _handleScroll: function() {
-            var scrollTop = this._window.pageYOffset || (this._document.documentElement || this._body.parentNode || this._body).scrollTop
-            if (this._lastScrollPosition === null)
-                this._lastScrollPosition = scrollTop
-            var deltaY = this._lastScrollPosition - scrollTop
-            if (Math.abs(deltaY) >= 40) {
-                this._lastScrollPosition = null
-                this._close()
-            }
+          var scrollTop = this._window.pageYOffset || (this._document.documentElement || this._body.parentNode || this._body).scrollTop
+          if (this._lastScrollPosition === null) {
+            this._lastScrollPosition = scrollTop
+          }
+
+          var deltaY = this._lastScrollPosition - scrollTop
+          if (Math.abs(deltaY) >= 40) {
+              this._lastScrollPosition = null
+              this._close()
+          }
         }
     }
     function Zoomable(target) {
@@ -75,6 +79,8 @@
         this._window = window
         this._handleTransitionEnd = this._handleTransitionEnd.bind(this)
         this._zoomOriginal = this._zoomOriginal.bind(this)
+        this._allImages = [].slice.call(document.querySelectorAll('[data-gallery-group]'))
+        this._header = document.querySelector('.header')
     }
     Zoomable.prototype = {
         zoomIn: function() {
@@ -90,23 +96,32 @@
             img.src = this._target.src
         },
         _zoomOriginal: function() {
-            this._target.offsetWidth
-            this._target.setAttribute('data-action', 'close')
-            this._target.classList.add('image-zoom-img')
-            this._target.addEventListener('transitionend', this._handleTransitionEnd)
-            var transform = 'translate(' + this._translate.x + 'px,' + this._translate.y + 'px) ' +
-            'scale(' + this._scale + ',' + this._scale + ')'
-            setStyles(this._target, {
-                '-webkit-transform': transform,
-                '-ms-transform': transform,
-                'transform': transform,
-            })
-            this._overlay = document.createElement('div')
-            this._overlay.classList.add('image-zoom-overlay')
-            this._body.appendChild(this._overlay)
-            this._window.setTimeout((function() {
-                this._body.classList.add('image-zoom-overlay-show')
-            }).bind(this), 50)
+          this._target.offsetWidth
+          this._target.setAttribute('data-action', 'close')
+          this._target.classList.add('image-zoom-img')
+          this._handleTransitionEnd()
+          // this._target.addEventListener('transitionend', this._handleTransitionEnd)
+          var transform = 'translate(' + this._translate.x + 'px,' + this._translate.y + 'px) ' +
+          'scale(' + this._scale + ',' + this._scale + ')'
+          setStyles(this._target, {
+              '-webkit-transform': transform,
+              '-ms-transform': transform,
+              'transform': transform,
+          })
+          this._overlay = document.createElement('div')
+          this._overlay.classList.add('image-zoom-overlay')
+          this._body.appendChild(this._overlay)
+          this._window.setTimeout((function() {
+              this._body.classList.add('image-zoom-overlay-show')
+          }).bind(this), 50)
+
+          var targetIndex = this._allImages.indexOf(this._target)
+          this._header.style.filter = 'blur(6px)'
+          this._allImages.forEach(function(otherImage, index) {
+            if (index !== targetIndex) {
+              otherImage.style.filter = 'blur(6px)'
+            }
+          })
         },
         _calculateZoom: function() {
             var windowCenter = {
@@ -132,33 +147,38 @@
             this._scale = this._scaleBase + Math.min(scaleHorizontally, scaleVertically)
         },
         zoomOut: function() {
-            this._target.setAttribute('data-action', 'zoom')
-            this._target.addEventListener('transitionend', this._handleTransitionEnd)
-            this._body.classList.remove('image-zoom-overlay-show')
-            setStyles(this._target, {
-                '-webkit-transform': '',
-                '-ms-transform': '',
-                'transform': '',
-            })
-            if (this._original) {
-                this._target.setAttribute('src', this._src)
-            }
+          this._target.setAttribute('data-action', 'zoom')
+          this._handleTransitionEnd()
+          // this._target.addEventListener('transitionend', this._handleTransitionEnd)
+          this._body.classList.remove('image-zoom-overlay-show')
+          setStyles(this._target, {
+              '-webkit-transform': '',
+              '-ms-transform': '',
+              'transform': '',
+          })
+          if (this._original) {
+            this._target.setAttribute('src', this._src)
+          }
+          this._header.style.filter = ''
+          this._allImages.forEach(function(otherImage, index) {
+            otherImage.style.filter = ''
+          })
         },
         _handleTransitionEnd: function(event) {
-            switch (this._target.getAttribute('data-action')) {
+          switch (this._target.getAttribute('data-action')) {
             case 'zoom':
-                this._body.removeChild(this._overlay)
-                this._target.classList.remove('image-zoom-img')
-                break
+              this._body.removeChild(this._overlay)
+              this._target.classList.remove('image-zoom-img')
+              break
             case 'close':
-                if (this._original) {
-                    this._target.setAttribute('src', this._original)
-                }
-                break
+              if (this._original) {
+                this._target.setAttribute('src', this._original)
+              }
+              break
             default:
-                break
-            }
-            this._target.removeEventListener('transitionend', this._handleTransitionEnd)
+              break
+          }
+          // this._target.removeEventListener('transitionend', this._handleTransitionEnd)
         }
     }
     function setStyles(element, styles) {
