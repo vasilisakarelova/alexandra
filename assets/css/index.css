@@ -38,6 +38,11 @@ img {
   width: 100%;
 }
 
+img::selection {
+  color: transparent;
+  background: transparent;
+}
+
 .Cf:after {
   content: '';
   display: table;
@@ -188,6 +193,16 @@ img {
 .cookie-btn {
   position: relative;
   cursor: pointer;
+}
+
+.caps {
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 983px) {
+  .grid {
+    width: 100% !important;
+  }
 }
 
 @media screen and (min-width: 984px) {

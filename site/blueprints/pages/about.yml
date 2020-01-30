@@ -23,6 +23,14 @@ options:
 columns:
   - width: 1/2
     fields:
+      shortdesc:
+        label: Short description
+        type: text
+        width: 2/3
+      closeSign:
+        label: Close Sign
+        type: text
+        width: 1/3
       text:
         label: About (text after "Alexandra Cepeda")
         type: textarea

@@ -19,7 +19,6 @@
         _zoom: function() {
             this._target.zoomIn()
             this._document.addEventListener('keydown', this._handleKeyDown)
-            // this._document.addEventListener('scroll', this._handleScroll)
         },
         _close: function() {
             if (!this._target) return
@@ -27,7 +26,28 @@
             this._target.zoomOut()
             this._target = null
             this._document.removeEventListener('keydown', this._handleKeyDown)
-            // this._document.removeEventListener('scroll', this._handleScroll)
+        },
+        _switch: function() {
+          var index = this._target._target.dataset.galleryGroup
+          var group = [].slice.call(document.querySelectorAll('[data-gallery-group="' + index + '"]'))
+          var currentIndex = group.indexOf(this._target._target)
+
+          if (currentIndex === group.length - 1) {
+            this._close()
+          } else {
+            group[currentIndex + 1].style.filter = ''
+            group[currentIndex + 1].click()
+
+            this._window.setTimeout((function() {
+              group[currentIndex].parentNode.classList.remove('open')
+              group[currentIndex].setAttribute('data-action', 'zoom')
+              setStyles(group[currentIndex], {
+                  '-webkit-transform': '',
+                  '-ms-transform': '',
+                  'transform': '',
+              })
+            }).bind(this), 50)
+          }
         },
         _handleClick: function(event) {
             var target = event.target
@@ -40,7 +60,8 @@
                     this._zoom()
                     break
                 case 'close':
-                    this._close()
+                    // this._close()
+                    this._switch()
                     break
                 default:
                     break
@@ -99,8 +120,8 @@
           this._target.offsetWidth
           this._target.setAttribute('data-action', 'close')
           this._target.classList.add('image-zoom-img')
+          this._target.parentNode.classList.add('open')
           this._handleTransitionEnd()
-          // this._target.addEventListener('transitionend', this._handleTransitionEnd)
           var transform = 'translate(' + this._translate.x + 'px,' + this._translate.y + 'px) ' +
           'scale(' + this._scale + ',' + this._scale + ')'
           setStyles(this._target, {
@@ -108,9 +129,6 @@
               '-ms-transform': transform,
               'transform': transform,
           })
-          this._overlay = document.createElement('div')
-          this._overlay.classList.add('image-zoom-overlay')
-          this._body.appendChild(this._overlay)
           this._window.setTimeout((function() {
               this._body.classList.add('image-zoom-overlay-show')
           }).bind(this), 50)
@@ -147,9 +165,9 @@
             this._scale = this._scaleBase + Math.min(scaleHorizontally, scaleVertically)
         },
         zoomOut: function() {
+          this._target.parentNode.classList.remove('open')
           this._target.setAttribute('data-action', 'zoom')
           this._handleTransitionEnd()
-          // this._target.addEventListener('transitionend', this._handleTransitionEnd)
           this._body.classList.remove('image-zoom-overlay-show')
           setStyles(this._target, {
               '-webkit-transform': '',
@@ -167,7 +185,6 @@
         _handleTransitionEnd: function(event) {
           switch (this._target.getAttribute('data-action')) {
             case 'zoom':
-              this._body.removeChild(this._overlay)
               this._target.classList.remove('image-zoom-img')
               break
             case 'close':
@@ -178,7 +195,6 @@
             default:
               break
           }
-          // this._target.removeEventListener('transitionend', this._handleTransitionEnd)
         }
     }
     function setStyles(element, styles) {

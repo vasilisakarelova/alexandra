@@ -21,7 +21,7 @@
           </div>
         </div>
       </div>
-      <div class="case-wrapper-name"><?= $album->headline() ?></div>
+      <div class="case-wrapper-name caps"><?= $album->headline() ?></div>
     <?php endforeach ?>
   </div>
 

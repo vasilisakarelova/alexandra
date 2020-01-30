@@ -22,10 +22,11 @@ img[data-action=close] {
   cursor: pointer;
 }
 
-.image-zoom-overlay-show {
+.image-zoom-overlay-show,
+.image-zoom-overlay-show .page {
   overflow: hidden;
 }
 
-.image-zoom-overlay-show .page {
+.image-zoom-overlay-show .photography-case-img-wrap:not(.open) {
   pointer-events: none;
 }

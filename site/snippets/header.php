@@ -39,16 +39,16 @@
     <header class="header">
       <div class="header-row">
         <div class="header-row--item is-link" data-menu-open>Alexandra Cepeda</div>
-        <div class="header-row--item">Photographer & Art Director</div>
-        <div class="header-row--item"><?= $site->find('about')->phone() ?></div>
+        <div class="header-row--item"><?= $site->find('about')->shortdesc() ?></div>
+        <div class="header-row--item" style="white-space: nowrap;"><?= $site->find('about')->phone() ?></div>
         <div class="header-row--item"><a href="mailto:<?= $site->find('about')->email() ?>"><?= $site->find('about')->email() ?></a></div>
       </div>
 
-      <div class="header-row">
+      <div class="header-row" style="white-space: nowrap;">
         <a class="header-row--item" href="<?= $site->url() ?>">Selected Project</a>
-        <div class="header-row--item is-hidden-mob" data-project-title><?= $site->find('photography')->children()->listed()->nth(0)->headline() ?></div>
+        <div class="header-row--item is-hidden-mob caps" data-project-title><?= $site->find('photography')->children()->listed()->nth(0)->headline() ?></div>
         <?php if($pages->find('photography')->isOpen()): ?>
-          <a class="header-row--item" href="<?= $site->url() ?>">[X]</a>
+          <a class="header-row--item" href="<?= $site->url() ?>"><?= $site->find('about')->closeSign() ?></a>
         <?php else: ?>
           <a class="header-row--item" href="<?= $site->find('photography')->url() ?>">Index</a>
         <?php endif ?>

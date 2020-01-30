@@ -2,6 +2,14 @@ Title: About us
 
 ----
 
+Shortdesc: Photographer & Art Director
+
+----
+
+Closesign: ←
+
+----
+
 Text:
 
 is a photographer and art director focused on the fashion industry.
@@ -16,12 +24,6 @@ Clients: Asics Europe, Pull&bear, Contributor Magazine, Client Magazine, Fucking
 
 ----
 
-Cover:
-
-- preloader.jpg
-
-----
-
 Email: hello@alexandracepeda.com
 
 ----
@@ -32,6 +34,10 @@ Phone: +34 689 057 829
 
 Social:
 
--
+- 
   platform: Instagram
   url: https://instagram.com/getkirby
+
+----
+
+Cover: - preloader.jpg

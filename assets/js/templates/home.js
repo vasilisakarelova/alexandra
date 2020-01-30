@@ -6,12 +6,18 @@
   var prevIdx
 
   window.addEventListener('resize', function() {
-    var galleryWidth = (window.innerWidth - mainImgs[cases.length - 1].offsetWidth) / 7
+    var galleryWidth = (window.innerWidth - mainImgs[cases.length - 1].offsetWidth) / (cases.length - 1)
     var winwW = window.innerWidth
     var maxW = winwW - mainImgs[cases.length - 1].offsetWidth + galleryWidth
     cases[0].parentNode.style.width = maxW + 'px'
     cases[0].parentNode.style.overflow = 'visible'
   })
+
+  var galleryWidthTest = (window.innerWidth - mainImgs[0].offsetWidth) / (cases.length - 1)
+  var winwWTest = window.innerWidth
+  var maxWText = winwWTest - mainImgs[0].offsetWidth + galleryWidthTest
+  cases[0].parentNode.style.width = maxWText + 'px'
+  cases[0].parentNode.style.overflow = 'visible'
 
   cases.forEach(function(gallery, idx) {
     var mainImg = mainImgs[idx]
@@ -22,11 +28,14 @@
 
     if (idx === (cases.length - 1)) {
       mainImg.addEventListener('load', function() {
-        var galleryWidth = (window.innerWidth - mainImg.offsetWidth) / 7
+        var galleryWidth = (window.innerWidth - mainImg.offsetWidth) / (cases.length - 1)
         var winwW = window.innerWidth
         var maxW = winwW - mainImg.offsetWidth + galleryWidth
-        gallery.parentNode.style.width = maxW + 'px'
-        gallery.parentNode.style.overflow = 'visible'
+
+        if (window.innerWidth > 983) {
+          gallery.parentNode.style.width = maxW + 'px'
+          gallery.parentNode.style.overflow = 'visible'          
+        }
       })
     }
 
