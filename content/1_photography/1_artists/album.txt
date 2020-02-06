@@ -2,13 +2,11 @@ Title: Artists
 
 ----
 
-Cover:
-
-- coranovoa.jpg
+Cover: - coranovoa.jpg
 
 ----
 
-Headline: Artists as leaders
+Headline: Artists
 
 ----
 

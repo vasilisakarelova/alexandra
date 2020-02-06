@@ -1,12 +1,12 @@
-Title: About us
+Title: About
 
 ----
 
-Shortdesc: Photographer & Art Director
+Shortdesc: Photographer
 
 ----
 
-Closesign: ←
+Closesign: [ X ]
 
 ----
 
@@ -17,6 +17,9 @@ is a photographer and art director focused on the fashion industry.
 Based in Barcelona, Alexandra has developed throughout the years a special sensibility for detail and a refined eye for images, composition, harmony, and balance.
 
 Passionate about storytelling and the human ability to relate with others, Alexandra’s work features bold, rich-concept images.
+
+Design by:
+Development by:
 
 ----
 
